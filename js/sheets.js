@@ -183,6 +183,11 @@ class SheetsConnector {
                 return false;
             }
 
+            // Filtro por cliente
+            if (filters.cliente && item.nombreCliente !== filters.cliente) {
+                return false;
+            }
+
             // Filtro por búsqueda de texto
             if (filters.search) {
                 const searchLower = filters.search.toLowerCase();

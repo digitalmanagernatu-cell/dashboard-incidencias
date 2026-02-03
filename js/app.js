@@ -10,6 +10,7 @@ class DashboardApp {
         this.itemsPerPage = CONFIG.ITEMS_PER_PAGE;
         this.sortColumn = 'fechaRegistro';
         this.sortDirection = 'desc';
+        this.clientFilter = null; // Filtro de cliente activo
 
         this.init();
     }
@@ -75,6 +76,9 @@ class DashboardApp {
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') this.closeModal();
         });
+
+        // Quitar filtro de cliente
+        document.getElementById('clearClientFilter').addEventListener('click', () => this.clearClientFilter());
     }
 
     /**
@@ -136,12 +140,45 @@ class DashboardApp {
             dateTo: document.getElementById('dateTo').value,
             zona: document.getElementById('zoneFilter').value,
             estado: document.getElementById('statusFilter').value,
-            search: document.getElementById('searchInput').value
+            search: document.getElementById('searchInput').value,
+            cliente: this.clientFilter
         };
 
         this.filteredData = sheetsConnector.filterData(filters);
         this.currentPage = 1;
         this.updateDashboard();
+        this.updateClientFilterUI();
+    }
+
+    /**
+     * Filtra por cliente
+     */
+    filterByClient(clientName) {
+        this.clientFilter = clientName;
+        this.applyFilters();
+    }
+
+    /**
+     * Quita el filtro de cliente
+     */
+    clearClientFilter() {
+        this.clientFilter = null;
+        this.applyFilters();
+    }
+
+    /**
+     * Actualiza la UI del filtro de cliente
+     */
+    updateClientFilterUI() {
+        const filterEl = document.getElementById('clientFilter');
+        const valueEl = document.getElementById('clientFilterValue');
+
+        if (this.clientFilter) {
+            valueEl.textContent = this.clientFilter;
+            filterEl.classList.add('show');
+        } else {
+            filterEl.classList.remove('show');
+        }
     }
 
     /**
@@ -152,6 +189,7 @@ class DashboardApp {
         document.getElementById('zoneFilter').value = '';
         document.getElementById('statusFilter').value = '';
         document.getElementById('searchInput').value = '';
+        this.clientFilter = null;
         this.applyFilters();
     }
 
@@ -213,6 +251,11 @@ class DashboardApp {
             btn.addEventListener('click', () => this.showDetail(btn.dataset.id));
         });
 
+        // Vincular eventos de clic en el cliente
+        tableBody.querySelectorAll('.client-link').forEach(link => {
+            link.addEventListener('click', () => this.filterByClient(link.dataset.client));
+        });
+
         // Actualizar paginación
         this.updatePagination(sortedData.length);
     }
@@ -222,12 +265,13 @@ class DashboardApp {
      */
     createTableRow(item) {
         const statusClass = this.getStatusClass(item.estadoNormalizado);
+        const clientName = this.escapeHtml(item.nombreCliente);
 
         return `
             <tr>
                 <td><strong>${this.escapeHtml(item.numIncidencia)}</strong></td>
                 <td>${this.escapeHtml(item.numCliente)}</td>
-                <td>${this.escapeHtml(item.nombreCliente)}</td>
+                <td><span class="client-link" data-client="${clientName}">${clientName}</span></td>
                 <td>${this.escapeHtml(item.comercial)}</td>
                 <td>${this.escapeHtml(item.zona)}</td>
                 <td>${this.escapeHtml(item.tipoIncidencia)}</td>
