@@ -457,29 +457,28 @@ class DashboardApp {
             document.body.appendChild(iframe);
 
             // Esperar a que el Apps Script procese la petición
-            await new Promise(resolve => setTimeout(resolve, 2500));
+            await new Promise(resolve => setTimeout(resolve, 2000));
 
             // Limpiar iframe
             document.body.removeChild(iframe);
 
-            messageEl.textContent = 'Estado actualizado. Recargando datos...';
-            messageEl.className = 'status-message success';
-
-            // Actualizar el badge de estado en el modal
-            const currentStatusEl = document.getElementById('currentStatus');
-            if (currentStatusEl) {
-                currentStatusEl.textContent = nuevoEstado;
-                currentStatusEl.className = `status-badge ${this.getStatusClass(nuevoEstado.toLowerCase() === 'cerrada' ? 'Cerrada' : 'Abierta')}`;
-            }
-
-            // Cerrar modal y recargar datos del Sheet
+            // Cerrar modal
             this.closeModal();
-            await this.loadData();
+
+            // Mostrar carga y esperar un poco más para que Google Sheets se actualice
+            this.showLoading(true);
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
+            // Recargar datos frescos del Sheet
+            this.data = await sheetsConnector.fetchData();
+            this.applyFilters();
+            this.updateLastUpdate();
+            this.hideLoading();
 
         } catch (error) {
             console.error('Error updating status:', error);
-            messageEl.textContent = 'Error al actualizar. Inténtalo de nuevo.';
-            messageEl.className = 'status-message error';
+            this.hideLoading();
+            alert('Error al actualizar el estado. Inténtalo de nuevo.');
         }
     }
 
