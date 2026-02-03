@@ -1,18 +1,18 @@
 /* Variables CSS */
 :root {
-    --primary-color: #3b82f6;
-    --primary-dark: #2563eb;
-    --secondary-color: #64748b;
+    --primary-color: #5C6B73;
+    --primary-dark: #454f55;
+    --secondary-color: #9DB4C0;
     --success-color: #22c55e;
     --warning-color: #f59e0b;
     --danger-color: #ef4444;
-    --background-color: #f1f5f9;
+    --background-color: #E0FBFC;
     --card-background: #ffffff;
-    --text-primary: #1e293b;
-    --text-secondary: #64748b;
-    --border-color: #e2e8f0;
-    --shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --text-primary: #5C6B73;
+    --text-secondary: #9DB4C0;
+    --border-color: #C2DFE3;
+    --shadow: 0 1px 3px rgba(92, 107, 115, 0.1), 0 1px 2px rgba(92, 107, 115, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(92, 107, 115, 0.1), 0 4px 6px -2px rgba(92, 107, 115, 0.05);
     --radius: 12px;
     --radius-sm: 8px;
 }
@@ -25,7 +25,7 @@
 }
 
 body {
-    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
     background-color: var(--background-color);
     color: var(--text-primary);
     line-height: 1.6;
