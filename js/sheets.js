@@ -26,7 +26,12 @@ class SheetsConnector {
     async fetchData() {
         try {
             const url = this.getCSVUrl();
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                cache: 'no-store',
+                headers: {
+                    'Cache-Control': 'no-cache'
+                }
+            });
 
             if (!response.ok) {
                 throw new Error(`Error al obtener datos: ${response.status} ${response.statusText}`);
