@@ -56,7 +56,7 @@ const CONFIG = {
     DATE_FORMAT: 'DD/MM/YYYY',
 
     // URL del Google Apps Script para actualizar estados
-    APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbzug3pLcLNYVyvJHtTEXjjU9boPmHCmFiLb0cRwSoSArSIYBcxJ9-mlNDtcxwb75gdJQw/exec'
+    APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbzOpF3v9OmI5QpmIXtKW5udF6rcYHOD9xorPq2g019H4CqFKgnGvuq8hONbk6Gr6L919A/exec'
 };
 
 // Función para obtener un array de colores
