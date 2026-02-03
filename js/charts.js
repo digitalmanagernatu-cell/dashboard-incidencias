@@ -59,6 +59,15 @@ class ChartsManager {
                             usePointStyle: true,
                             font: {
                                 size: 12
+                            },
+                            generateLabels: function(chart) {
+                                const data = chart.data;
+                                return data.labels.map((label, i) => ({
+                                    text: `${label}: ${data.datasets[0].data[i]}`,
+                                    fillStyle: data.datasets[0].backgroundColor[i],
+                                    hidden: false,
+                                    index: i
+                                }));
                             }
                         }
                     },
@@ -301,12 +310,6 @@ class ChartsManager {
         const ctxTendencia = document.getElementById('chartTendencia');
         if (ctxTendencia && Object.keys(stats.porFecha).length > 0) {
             this.createTendenciaChart(ctxTendencia, stats.porFecha);
-        }
-
-        // Gráfico de zonas
-        const ctxZonas = document.getElementById('chartZonas');
-        if (ctxZonas && Object.keys(stats.porZona).length > 0) {
-            this.createZonasChart(ctxZonas, stats.porZona);
         }
     }
 }

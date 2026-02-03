@@ -240,9 +240,9 @@ class SheetsConnector {
                     (stats.tiposIncidencia[item.tipoIncidencia] || 0) + 1;
             }
 
-            // Contar por estado original
-            if (item.estado) {
-                stats.estados[item.estado] = (stats.estados[item.estado] || 0) + 1;
+            // Contar por estado normalizado (agrupa Pendiente/Pendient, etc.)
+            if (item.estadoNormalizado) {
+                stats.estados[item.estadoNormalizado] = (stats.estados[item.estadoNormalizado] || 0) + 1;
             }
 
             // Contar por fecha

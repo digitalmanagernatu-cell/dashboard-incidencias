@@ -43,6 +43,14 @@ class DashboardApp {
         document.getElementById('applyFilters').addEventListener('click', () => this.applyFilters());
         document.getElementById('resetFilters').addEventListener('click', () => this.resetFilters());
 
+        // Actualizar automáticamente al cambiar fechas
+        document.getElementById('dateFrom').addEventListener('change', () => this.applyFilters());
+        document.getElementById('dateTo').addEventListener('change', () => this.applyFilters());
+
+        // Actualizar automáticamente al cambiar zona o estado
+        document.getElementById('zoneFilter').addEventListener('change', () => this.applyFilters());
+        document.getElementById('statusFilter').addEventListener('change', () => this.applyFilters());
+
         // Búsqueda en la tabla
         document.getElementById('searchInput').addEventListener('input', (e) => {
             this.applyFilters();
