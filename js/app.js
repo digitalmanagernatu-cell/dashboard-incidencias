@@ -456,18 +456,15 @@ class DashboardApp {
             iframe.src = url;
             document.body.appendChild(iframe);
 
-            // Esperar a que el Apps Script procese la petición
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            // Cerrar modal y mostrar carga
+            this.closeModal();
+            this.showLoading(true);
+
+            // Esperar a que el Apps Script procese y Google Sheets se actualice
+            await new Promise(resolve => setTimeout(resolve, 3500));
 
             // Limpiar iframe
             document.body.removeChild(iframe);
-
-            // Cerrar modal
-            this.closeModal();
-
-            // Mostrar carga y esperar un poco más para que Google Sheets se actualice
-            this.showLoading(true);
-            await new Promise(resolve => setTimeout(resolve, 1500));
 
             // Recargar datos frescos del Sheet
             this.data = await sheetsConnector.fetchData();
