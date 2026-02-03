@@ -1,16 +1,17 @@
 /* Variables CSS */
 :root {
     --primary-color: #5C6B73;
-    --primary-dark: #454f55;
+    --primary-dark: #4a575e;
     --secondary-color: #9DB4C0;
-    --success-color: #22c55e;
-    --warning-color: #f59e0b;
-    --danger-color: #ef4444;
-    --background-color: #E0FBFC;
+    --success-color: #5C6B73;
+    --warning-color: #9DB4C0;
+    --danger-color: #5C6B73;
+    --background-color: #f5f5f5;
     --card-background: #ffffff;
     --text-primary: #5C6B73;
     --text-secondary: #9DB4C0;
     --border-color: #C2DFE3;
+    --accent-light: #E0FBFC;
     --shadow: 0 1px 3px rgba(92, 107, 115, 0.1), 0 1px 2px rgba(92, 107, 115, 0.06);
     --shadow-lg: 0 10px 15px -3px rgba(92, 107, 115, 0.1), 0 4px 6px -2px rgba(92, 107, 115, 0.05);
     --radius: 12px;
@@ -190,23 +191,23 @@ body {
 }
 
 .kpi-icon.total {
-    background: rgba(59, 130, 246, 0.1);
-    color: var(--primary-color);
+    background: #E0FBFC;
+    color: #5C6B73;
 }
 
 .kpi-icon.open {
-    background: rgba(245, 158, 11, 0.1);
-    color: var(--warning-color);
+    background: #C2DFE3;
+    color: #5C6B73;
 }
 
 .kpi-icon.closed {
-    background: rgba(34, 197, 94, 0.1);
-    color: var(--success-color);
+    background: #9DB4C0;
+    color: #5C6B73;
 }
 
 .kpi-icon.zones {
-    background: rgba(139, 92, 246, 0.1);
-    color: #8b5cf6;
+    background: #E0FBFC;
+    color: #5C6B73;
 }
 
 .kpi-content {
@@ -355,21 +356,21 @@ tbody tr:last-child td {
 .status-badge.abierta,
 .status-badge.pendiente,
 .status-badge.en-proceso {
-    background: rgba(245, 158, 11, 0.1);
-    color: var(--warning-color);
+    background: #E0FBFC;
+    color: #5C6B73;
 }
 
 .status-badge.cerrada,
 .status-badge.resuelta,
 .status-badge.solucionada {
-    background: rgba(34, 197, 94, 0.1);
-    color: var(--success-color);
+    background: #C2DFE3;
+    color: #5C6B73;
 }
 
 .status-badge.critica,
 .status-badge.urgente {
-    background: rgba(239, 68, 68, 0.1);
-    color: var(--danger-color);
+    background: #9DB4C0;
+    color: #5C6B73;
 }
 
 /* Botón de ver detalle */
@@ -671,7 +672,7 @@ tbody tr:last-child td {
     display: none;
     align-items: center;
     gap: 12px;
-    background: rgba(59, 130, 246, 0.1);
+    background: #E0FBFC;
     padding: 12px 16px;
     border-radius: var(--radius-sm);
     margin-bottom: 16px;

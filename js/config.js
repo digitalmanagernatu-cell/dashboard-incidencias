@@ -32,18 +32,18 @@ const CONFIG = {
     // Días por defecto para el filtro de fecha
     DEFAULT_DAYS_FILTER: 7,
 
-    // Colores para los gráficos (basados en la paleta corporativa)
+    // Colores para los gráficos (solo paleta corporativa)
     CHART_COLORS: {
         primary: '#5C6B73',
-        success: '#22c55e',
-        warning: '#9DB4C0',
-        danger: '#ef4444',
-        purple: '#7C8B93',
+        success: '#9DB4C0',
+        warning: '#C2DFE3',
+        danger: '#5C6B73',
+        purple: '#9DB4C0',
         pink: '#C2DFE3',
         cyan: '#E0FBFC',
-        orange: '#6C7B83',
-        teal: '#8C9BA3',
-        indigo: '#4C5B63'
+        orange: '#5C6B73',
+        teal: '#9DB4C0',
+        indigo: '#C2DFE3'
     },
 
     // Estados posibles (para normalización)
