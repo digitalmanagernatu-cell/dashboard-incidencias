@@ -447,19 +447,21 @@ class DashboardApp {
         messageEl.className = 'status-message loading';
 
         try {
-            const response = await fetch(CONFIG.APPS_SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    numIncidencia: numIncidencia,
-                    estado: nuevoEstado
-                })
-            });
+            // Construir URL con parámetros GET
+            const url = `${CONFIG.APPS_SCRIPT_URL}?numIncidencia=${encodeURIComponent(numIncidencia)}&estado=${encodeURIComponent(nuevoEstado)}`;
 
-            // Con no-cors no podemos leer la respuesta, asumimos éxito
+            // Usar un iframe oculto para hacer la petición (evita CORS)
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = url;
+            document.body.appendChild(iframe);
+
+            // Esperar un momento y asumir éxito
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            // Limpiar iframe
+            document.body.removeChild(iframe);
+
             messageEl.textContent = 'Estado actualizado correctamente. Recargando datos...';
             messageEl.className = 'status-message success';
 
@@ -470,10 +472,11 @@ class DashboardApp {
                 currentStatusEl.className = `status-badge ${this.getStatusClass(nuevoEstado.toLowerCase() === 'cerrada' ? 'Cerrada' : 'Abierta')}`;
             }
 
-            // Recargar datos después de 1.5 segundos
+            // Recargar datos después de 1 segundo
             setTimeout(() => {
                 this.loadData();
-            }, 1500);
+                this.closeModal();
+            }, 1000);
 
         } catch (error) {
             console.error('Error updating status:', error);
