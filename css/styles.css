@@ -708,3 +708,76 @@ tbody tr:last-child td {
 .active-filter-clear:hover {
     background: var(--primary-dark);
 }
+
+/* Botones de cambio de estado */
+.status-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.status-actions-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.btn-status {
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-status.btn-pendiente {
+    background: #E0FBFC;
+    color: #5C6B73;
+    border: 1px solid #C2DFE3;
+}
+
+.btn-status.btn-pendiente:hover {
+    background: #C2DFE3;
+}
+
+.btn-status.btn-cerrada {
+    background: #5C6B73;
+    color: white;
+}
+
+.btn-status.btn-cerrada:hover {
+    background: #4a575e;
+}
+
+/* Mensaje de estado */
+.status-message {
+    margin-top: 16px;
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    text-align: center;
+    display: none;
+}
+
+.status-message.loading {
+    display: block;
+    background: #E0FBFC;
+    color: #5C6B73;
+}
+
+.status-message.success {
+    display: block;
+    background: #C2DFE3;
+    color: #5C6B73;
+}
+
+.status-message.error {
+    display: block;
+    background: #f5f5f5;
+    color: #5C6B73;
+}

@@ -370,6 +370,8 @@ class DashboardApp {
         const item = this.filteredData.find(i => i.id === parseInt(id));
         if (!item) return;
 
+        this.currentDetailItem = item;
+
         const modalBody = document.getElementById('modalBody');
         modalBody.innerHTML = `
             <div class="detail-row">
@@ -415,14 +417,69 @@ class DashboardApp {
             <div class="detail-row">
                 <span class="detail-label">Estado:</span>
                 <span class="detail-value">
-                    <span class="status-badge ${this.getStatusClass(item.estadoNormalizado)}">
+                    <span id="currentStatus" class="status-badge ${this.getStatusClass(item.estadoNormalizado)}">
                         ${this.escapeHtml(item.estado)}
                     </span>
                 </span>
             </div>
+            <div class="status-actions">
+                <span class="status-actions-label">Cambiar estado:</span>
+                <button class="btn-status btn-pendiente" data-status="Pendiente">Pendiente</button>
+                <button class="btn-status btn-cerrada" data-status="Cerrada">Cerrada</button>
+            </div>
+            <div id="statusMessage" class="status-message"></div>
         `;
 
+        // Vincular eventos de los botones de estado
+        modalBody.querySelectorAll('.btn-status').forEach(btn => {
+            btn.addEventListener('click', () => this.changeStatus(item.numIncidencia, btn.dataset.status));
+        });
+
         document.getElementById('detailModal').classList.add('active');
+    }
+
+    /**
+     * Cambia el estado de una incidencia
+     */
+    async changeStatus(numIncidencia, nuevoEstado) {
+        const messageEl = document.getElementById('statusMessage');
+        messageEl.textContent = 'Actualizando...';
+        messageEl.className = 'status-message loading';
+
+        try {
+            const response = await fetch(CONFIG.APPS_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    numIncidencia: numIncidencia,
+                    estado: nuevoEstado
+                })
+            });
+
+            // Con no-cors no podemos leer la respuesta, asumimos éxito
+            messageEl.textContent = 'Estado actualizado correctamente. Recargando datos...';
+            messageEl.className = 'status-message success';
+
+            // Actualizar el badge de estado en el modal
+            const currentStatusEl = document.getElementById('currentStatus');
+            if (currentStatusEl) {
+                currentStatusEl.textContent = nuevoEstado;
+                currentStatusEl.className = `status-badge ${this.getStatusClass(nuevoEstado.toLowerCase() === 'cerrada' ? 'Cerrada' : 'Abierta')}`;
+            }
+
+            // Recargar datos después de 1.5 segundos
+            setTimeout(() => {
+                this.loadData();
+            }, 1500);
+
+        } catch (error) {
+            console.error('Error updating status:', error);
+            messageEl.textContent = 'Error al actualizar. Inténtalo de nuevo.';
+            messageEl.className = 'status-message error';
+        }
     }
 
     /**

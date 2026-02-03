@@ -53,7 +53,10 @@ const CONFIG = {
     },
 
     // Formato de fecha esperado en el Sheet
-    DATE_FORMAT: 'DD/MM/YYYY'
+    DATE_FORMAT: 'DD/MM/YYYY',
+
+    // URL del Google Apps Script para actualizar estados
+    APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbzug3pLcLNYVyvJHtTEXjjU9boPmHCmFiLb0cRwSoSArSIYBcxJ9-mlNDtcxwb75gdJQw/exec'
 };
 
 // Función para obtener un array de colores
