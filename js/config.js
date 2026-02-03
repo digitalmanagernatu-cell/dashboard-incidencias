@@ -80,9 +80,19 @@ function normalizeEstado(estado) {
     return estado;
 }
 
-// Función para parsear fecha del formato DD/MM/YYYY
+// Función para parsear fecha de varios formatos
 function parseDate(dateStr) {
     if (!dateStr) return null;
+
+    // Formato especial del formulario: "Jan 30, 2026/01/YYYY 13:14:12"
+    // Extraer solo la parte "Jan 30, 2026"
+    const specialFormat = dateStr.match(/^([A-Za-z]{3}\s+\d{1,2},\s+\d{4})/);
+    if (specialFormat) {
+        const date = new Date(specialFormat[1]);
+        if (!isNaN(date.getTime())) {
+            return date;
+        }
+    }
 
     // Intentar varios formatos comunes
     const formats = [
