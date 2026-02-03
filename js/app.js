@@ -456,13 +456,13 @@ class DashboardApp {
             iframe.src = url;
             document.body.appendChild(iframe);
 
-            // Esperar un momento y asumir éxito
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            // Esperar a que el Apps Script procese la petición
+            await new Promise(resolve => setTimeout(resolve, 2500));
 
             // Limpiar iframe
             document.body.removeChild(iframe);
 
-            messageEl.textContent = 'Estado actualizado correctamente. Recargando datos...';
+            messageEl.textContent = 'Estado actualizado. Recargando datos...';
             messageEl.className = 'status-message success';
 
             // Actualizar el badge de estado en el modal
@@ -472,11 +472,9 @@ class DashboardApp {
                 currentStatusEl.className = `status-badge ${this.getStatusClass(nuevoEstado.toLowerCase() === 'cerrada' ? 'Cerrada' : 'Abierta')}`;
             }
 
-            // Recargar datos después de 1 segundo
-            setTimeout(() => {
-                this.loadData();
-                this.closeModal();
-            }, 1000);
+            // Cerrar modal y recargar datos del Sheet
+            this.closeModal();
+            await this.loadData();
 
         } catch (error) {
             console.error('Error updating status:', error);

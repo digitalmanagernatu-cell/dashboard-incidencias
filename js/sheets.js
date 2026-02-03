@@ -13,9 +13,11 @@ class SheetsConnector {
 
     /**
      * Construye la URL para obtener el CSV del Google Sheet
+     * Incluye parámetro anti-caché para forzar datos frescos
      */
     getCSVUrl() {
-        return `https://docs.google.com/spreadsheets/d/${this.sheetId}/export?format=csv&gid=${this.gid}`;
+        const cacheBuster = Date.now();
+        return `https://docs.google.com/spreadsheets/d/${this.sheetId}/export?format=csv&gid=${this.gid}&_=${cacheBuster}`;
     }
 
     /**
