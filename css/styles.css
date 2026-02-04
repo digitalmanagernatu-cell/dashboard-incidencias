@@ -1,19 +1,19 @@
 /* Variables CSS */
 :root {
-    --primary-color: #5C6B73;
-    --primary-dark: #4a575e;
-    --secondary-color: #9DB4C0;
-    --success-color: #5C6B73;
-    --warning-color: #9DB4C0;
-    --danger-color: #5C6B73;
-    --background-color: #f5f5f5;
+    --primary-color: #4ECDC4;
+    --primary-dark: #3dbdb5;
+    --secondary-color: #292F36;
+    --success-color: #4ECDC4;
+    --warning-color: #FF6B6B;
+    --danger-color: #FF6B6B;
+    --background-color: #F7FFF7;
     --card-background: #ffffff;
-    --text-primary: #5C6B73;
-    --text-secondary: #9DB4C0;
-    --border-color: #C2DFE3;
-    --accent-light: #E0FBFC;
-    --shadow: 0 1px 3px rgba(92, 107, 115, 0.1), 0 1px 2px rgba(92, 107, 115, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(92, 107, 115, 0.1), 0 4px 6px -2px rgba(92, 107, 115, 0.05);
+    --text-primary: #292F36;
+    --text-secondary: #5a6670;
+    --border-color: #d0e8e6;
+    --accent-light: #e8f8f7;
+    --shadow: 0 1px 3px rgba(41, 47, 54, 0.1), 0 1px 2px rgba(41, 47, 54, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(41, 47, 54, 0.1), 0 4px 6px -2px rgba(41, 47, 54, 0.05);
     --radius: 12px;
     --radius-sm: 8px;
 }
@@ -124,7 +124,7 @@ body {
 .filter-group select:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.2);
 }
 
 .btn-primary,
@@ -191,23 +191,23 @@ body {
 }
 
 .kpi-icon.total {
-    background: #E0FBFC;
-    color: #5C6B73;
+    background: #e8f8f7;
+    color: #4ECDC4;
 }
 
 .kpi-icon.open {
-    background: #C2DFE3;
-    color: #5C6B73;
+    background: #fff0f0;
+    color: #FF6B6B;
 }
 
 .kpi-icon.closed {
-    background: #9DB4C0;
-    color: #5C6B73;
+    background: #e8f8f7;
+    color: #4ECDC4;
 }
 
 .kpi-icon.zones {
-    background: #E0FBFC;
-    color: #5C6B73;
+    background: #f0f2f3;
+    color: #292F36;
 }
 
 .kpi-content {
@@ -294,7 +294,7 @@ body {
 .table-search input:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.2);
 }
 
 .table-wrapper {
@@ -335,7 +335,7 @@ td {
 }
 
 tbody tr:hover {
-    background: rgba(59, 130, 246, 0.02);
+    background: rgba(78, 205, 196, 0.05);
 }
 
 tbody tr:last-child td {
@@ -356,21 +356,21 @@ tbody tr:last-child td {
 .status-badge.abierta,
 .status-badge.pendiente,
 .status-badge.en-proceso {
-    background: #E0FBFC;
-    color: #5C6B73;
+    background: #fff0f0;
+    color: #FF6B6B;
 }
 
 .status-badge.cerrada,
 .status-badge.resuelta,
 .status-badge.solucionada {
-    background: #C2DFE3;
-    color: #5C6B73;
+    background: #e8f8f7;
+    color: #3dbdb5;
 }
 
 .status-badge.critica,
 .status-badge.urgente {
-    background: #9DB4C0;
-    color: #5C6B73;
+    background: #fff0f0;
+    color: #FF6B6B;
 }
 
 /* Botón de ver detalle */
@@ -672,7 +672,7 @@ tbody tr:last-child td {
     display: none;
     align-items: center;
     gap: 12px;
-    background: #E0FBFC;
+    background: #e8f8f7;
     padding: 12px 16px;
     border-radius: var(--radius-sm);
     margin-bottom: 16px;
@@ -736,22 +736,22 @@ tbody tr:last-child td {
 }
 
 .btn-status.btn-pendiente {
-    background: #E0FBFC;
-    color: #5C6B73;
-    border: 1px solid #C2DFE3;
+    background: #fff0f0;
+    color: #FF6B6B;
+    border: 1px solid #ffcccc;
 }
 
 .btn-status.btn-pendiente:hover {
-    background: #C2DFE3;
+    background: #ffe0e0;
 }
 
 .btn-status.btn-cerrada {
-    background: #5C6B73;
+    background: #4ECDC4;
     color: white;
 }
 
 .btn-status.btn-cerrada:hover {
-    background: #4a575e;
+    background: #3dbdb5;
 }
 
 /* Mensaje de estado */
@@ -766,18 +766,18 @@ tbody tr:last-child td {
 
 .status-message.loading {
     display: block;
-    background: #E0FBFC;
-    color: #5C6B73;
+    background: #e8f8f7;
+    color: #292F36;
 }
 
 .status-message.success {
     display: block;
-    background: #C2DFE3;
-    color: #5C6B73;
+    background: #e8f8f7;
+    color: #3dbdb5;
 }
 
 .status-message.error {
     display: block;
-    background: #f5f5f5;
-    color: #5C6B73;
+    background: #fff0f0;
+    color: #FF6B6B;
 }

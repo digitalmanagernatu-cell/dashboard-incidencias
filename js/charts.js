@@ -28,13 +28,13 @@ class ChartsManager {
         const colors = labels.map(label => {
             const labelLower = label.toLowerCase();
             if (labelLower.includes('cerrad') || labelLower.includes('resuelt') || labelLower.includes('solucion')) {
-                return CONFIG.CHART_COLORS.success;
+                return CONFIG.CHART_COLORS.primary; // Cyan para cerradas
             } else if (labelLower.includes('abiert') || labelLower.includes('pendiente')) {
-                return CONFIG.CHART_COLORS.warning;
+                return CONFIG.CHART_COLORS.accent; // Rojo para abiertas
             } else if (labelLower.includes('urgent') || labelLower.includes('critic')) {
-                return CONFIG.CHART_COLORS.danger;
+                return CONFIG.CHART_COLORS.accent; // Rojo para urgentes
             }
-            return CONFIG.CHART_COLORS.primary;
+            return CONFIG.CHART_COLORS.secondary; // Gris oscuro por defecto
         });
 
         this.charts['estados'] = new Chart(ctx, {
@@ -174,7 +174,7 @@ class ChartsManager {
                     label: 'Incidencias',
                     data: values,
                     borderColor: CONFIG.CHART_COLORS.primary,
-                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    backgroundColor: 'rgba(78, 205, 196, 0.15)',
                     borderWidth: 3,
                     fill: true,
                     tension: 0.4,
